@@ -1,60 +1,16 @@
-<section>
-  <div class="container">
-    <div class="wrap">
-      <div class="today row">
-        <div class="col-md-6 center">
-          <img class="current-ico" [src]="imageUrl" alt="Image" />
-        </div>
-        <div class="col-md-6 weather-info">
-          <div class="row">
-            <div class="col-md-6">
-              <p>12 &deg;</p>
-              <p>pizgawica</p>
-            </div>
-            <div class="col-md-6">Breslau</div>
-          </div>
-        </div>
-      </div>
-      <div class="week">
-        <ul class="center">
-          <li>
-            <img [src]="imageUrl" alt="Image" />
-            <p>12 &deg;</p>
-            <p>pizgawica</p>
-            <p>Breslau</p>
-          </li>
-          <li>
-            <img [src]="imageUrl" alt="Image" />
-            <p>12 &deg;</p>
-            <p>pizgawica</p>
-            <p>Breslau</p>
-          </li>
-          <li>
-            <img [src]="imageUrl" alt="Image" />
-            <p>12 &deg;</p>
-            <p>pizgawica</p>
-            <p>Breslau</p>
-          </li>
-          <li>
-            <img [src]="imageUrl" alt="Image" />
-            <p>12 &deg;</p>
-            <p>pizgawica</p>
-            <p>Breslau</p>
-          </li>
-          <li>
-            <img [src]="imageUrl" alt="Image" />
-            <p>12 &deg;</p>
-            <p>pizgawica</p>
-            <p>Breslau</p>
-          </li>
-          <li>
-            <img [src]="imageUrl" alt="Image" />
-            <p>12 &deg;</p>
-            <p>pizgawica</p>
-            <p>Breslau</p>
-          </li>
-        </ul>
-      </div>
+<div class="container">
+  <div class="wrap">
+    <div class="today">
+      <app-weather-today
+        [weatherData]="weatherData"
+        [foundCity]="foundCity"
+      ></app-weather-today>
+    </div>
+    <div class="week">
+      <app-weather-week
+        [weatherData]="weatherData"
+        [foundCity]="foundCity"
+      ></app-weather-week>
     </div>
   </div>
-</section>
+</div>

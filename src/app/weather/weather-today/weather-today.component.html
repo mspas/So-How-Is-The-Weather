@@ -1,0 +1,20 @@
+<div class="row">
+  <div class="col-md-6 center">
+    <img (click)="click()" class="current-ico" [src]="imageUrl" alt="Image" />
+  </div>
+  <div class="col-md-6 weather-info">
+    <div class="row">
+      <!--to do properly, now just works-->
+      <div class="col-md-6">
+        <p *ngIf="weatherData == null">12 &deg;</p>
+        <p *ngIf="weatherData == null">shitw</p>
+        <p *ngIf="weatherData != null">{{ weatherData.main.temp }} &deg;</p>
+        <p *ngIf="weatherData != null">{{ weatherData.weather[0].main }}</p>
+      </div>
+      <div class="col-md-6">
+        <span *ngIf="foundCity == null">Breslau</span>
+        <span *ngIf="foundCity != null">{{ foundCity.name }}</span>
+      </div>
+    </div>
+  </div>
+</div>

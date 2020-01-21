@@ -1,20 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { BrowserModule } from "@angular/platform-browser";
+import { NgModule, forwardRef } from "@angular/core";
+import { HttpClientModule } from "@angular/common/http";
 
-import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
-import { WeatherComponent } from './weather/weather.component';
+import { AppRoutingModule } from "./app-routing.module";
+import { AppComponent } from "./app.component";
+import { ApiService } from "./services/api.service";
+import { WeatherModule } from "./weather/weather.module";
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    WeatherComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule
-  ],
-  providers: [],
+  declarations: [AppComponent],
+  imports: [BrowserModule, HttpClientModule, AppRoutingModule, WeatherModule],
+  providers: [ApiService],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}
