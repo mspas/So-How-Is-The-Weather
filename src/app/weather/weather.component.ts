@@ -46,12 +46,11 @@ export class WeatherComponent implements OnInit {
         }
       }
 
-      this._api.getWeather(cityPicker.cityData.id).subscribe(data => {
+      /*this._api.getWeather(cityPicker.cityData.id).subscribe(data => {
         this.weatherData = data;
         this.foundCity = cityPicker.cityData;
-        console.log(this.weatherData.weather.main);
-      });
-      console.log(cityPicker.cityData.name);
+        console.log(JSON.stringify(data));
+      });*/
     });
   }
 

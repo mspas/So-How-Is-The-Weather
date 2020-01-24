@@ -6,10 +6,18 @@ import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { ApiService } from "./services/api.service";
 import { WeatherModule } from "./weather/weather.module";
+import { HeaderComponent } from "./header/header.component";
+import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
 
 @NgModule({
-  declarations: [AppComponent],
-  imports: [BrowserModule, HttpClientModule, AppRoutingModule, WeatherModule],
+  declarations: [AppComponent, HeaderComponent],
+  imports: [
+    BrowserModule,
+    FontAwesomeModule,
+    HttpClientModule,
+    AppRoutingModule,
+    WeatherModule
+  ],
   providers: [ApiService],
   bootstrap: [AppComponent]
 })

@@ -1,6 +1,8 @@
-.header    
-    max-width: 992px
-    margin: 35px auto
-    @media screen and ( max-width: 350px )
-        img
-            max-width: 100vw
+@import '../_variables.sass'
+@import '../_mixins.sass'
+    
+#app
+    width: 100vw
+    min-height: 100vh
+.sunny
+    @include line-gradient($night-blue, $purple, 60%, 120%)

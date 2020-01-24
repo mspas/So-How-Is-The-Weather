@@ -1,13 +1,17 @@
-@use '_variables'
+@import './_variables.sass'
 
 html, body
     margin: 0
     padding: 0
     width: 100vw
-    background-color: rgb(24, 24, 24)
-    color: rgb(211, 211, 211)
-    font-family: 'Montserrat', sans-serif
+    overflow-x: hidden
+    color: $font-white
+    font-family: 'Open Sans Condensed', sans-serif
     font-size: 18px
+    font-weight: 400
+    letter-spacing: 2px
+    @media screen and ( max-width: 770px)
+        font-size: 15px
 
 .center
     display: flex

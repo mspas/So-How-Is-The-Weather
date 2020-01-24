@@ -1,9 +1,31 @@
-.current-ico
+#current-ico
     display: inline-block
-    width: 300px
+    width: 150px
     @media screen and ( max-width: 300px )
         width: 100%
+.sun
+    animation: spin 10s linear infinite
+    @keyframes spin
+        0%
+            transform: rotate(0deg)
+        100%
+            transform: rotate(360deg)            
         
 .weather-info
     text-align: center
     padding: 50px 0
+.weather-main-wrap
+    max-width: 233px
+    @media ( max-width: 770px )
+        max-width: 100%
+.weather-main
+    padding: 0 15px 0 15px
+    width: 100%
+    text-align: center
+.big-temp
+    font-size: 4em
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
+.md-font
+    font-size: 1.75em
+.degrees
+    font-size: 0.4em
