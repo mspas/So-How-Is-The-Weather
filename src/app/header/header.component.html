@@ -6,15 +6,23 @@
     <div class="col-lg-6 col-md-6 col-sm-6 col-xs-6">
       <form class="form-inline form-right">
         <input
-          class="form-control mr-sm-2"
+          class="form-control"
           type="search"
           placeholder="Find city"
           aria-label="Find city"
+          (click)="inputClick()"
         />
-        <button class="btn btn-outline-light my-2 my-sm-0" type="submit">
+        <div class="btn btn-outline-light center">
           <fa-icon [icon]="faSearch"></fa-icon>
-        </button>
+        </div>
       </form>
+      <div class="results hidden" id="city-results">
+        <ul>
+          <li id="result1">...</li>
+          <li id="result2">...</li>
+          <li id="result3">...</li>
+        </ul>
+      </div>
     </div>
   </div>
 </div>

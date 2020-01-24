@@ -1,4 +1,8 @@
 $height: 40px
+$li-height: 25px
+$input-width: 169px
+$white: #ffffff
+$radius: 0.25rem
 
 .header    
     max-width: 992px
@@ -17,24 +21,67 @@ $height: 40px
     .form-right
         float: right
         max-height: 43px
-        min-width: 225px
+        min-width: $input-width + 40px
         @media screen and ( max-width: 450px )
             margin-top: 20px
         input 
             background-color: #ffffff00
-            border-color: #ffffff
-            max-width: 170px
-            max-height: $height
+            border-color: $white
+            border-right-style: none
+            border-radius: $radius 0 0 $radius
+            color: $white
+            max-width: $input-width
+            height: $height - 2
             padding: 0 0.75rem
             @media screen and ( max-width: 774px )
                 padding: 0 0 0 5px
-                height: $height - 10px
+                height: $height - 12px
+            &:focus
+                background-color: #ffffff0e
+                box-shadow: none
+            *:focus 
+                box-shadow: none
+
         .btn
             padding: 0
+            border-left-style: none
+            border-radius: 0 $radius $radius 0
             width: $height
             height: $height
+            cursor: default
             @media screen and ( max-width: 774px )
-                margin-left: 5px
                 width: $height - 10px
                 height: $height - 10px
-            
+.hidden
+    visibility: hidden
+.visible
+    visibility: hidden
+.collapse-results
+    animation: fadeIn 0.5s ease-out
+    @keyframes fadeIn
+        0%
+            opacity: 0
+            transform: translateY(-20px)
+        100%
+            opacity: 1
+            transform: translateY(0)
+.results
+    position: absolute
+    z-index: 2
+    right: 0
+    bottom: -20px - (3*$li-height)
+    width: $input-width + 40px
+    height: auto
+    background-color: #ffffff0e
+    border: 1px solid $white
+    border-top: none
+    border-radius: 0 0 $radius $radius
+    ul
+        padding: 0
+        li 
+            padding-left: 40px
+            list-style: none
+            height: $li-height
+            cursor: pointer
+            &:hover
+                background-color: #ffffff2c
