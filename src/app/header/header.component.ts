@@ -1,5 +1,7 @@
 import { Component, OnInit, ElementRef, HostListener } from "@angular/core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import cities from "../city.list.json";
+import { CityData } from "../models/city.model";
 
 @Component({
   selector: "app-header",
@@ -10,10 +12,16 @@ export class HeaderComponent implements OnInit {
   public faSearch = faSearch;
   private collapseHandler = false;
   private wasInside = false;
+  private wasSearched = false;
+  private citiesList: CityData[] = cities;
+  private searchTab: CityData[];
+  private searchValueLength = 0;
 
-  constructor(private eRef: ElementRef) {}
+  constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.searchTab = this.citiesList;
+  }
 
   inputClick() {
     this.collapseHandler = !this.collapseHandler;
@@ -35,5 +43,30 @@ export class HeaderComponent implements OnInit {
     }
     this.wasInside = false;
     this.collapseHandler = false;
+  }
+
+  inputSearchChange(searchValue: string) {
+    if (searchValue.length > 2) {
+      if (this.searchValueLength > searchValue.length)
+        this.searchTab = this.citiesList;
+
+      this.wasSearched = true;
+      searchValue =
+        searchValue[0].toUpperCase() + searchValue.slice(1, searchValue.length);
+
+      let regex = new RegExp(searchValue + ".*");
+      let tempTab = [];
+
+      this.searchTab.forEach(city => {
+        let match = city.name.match(regex);
+        if (match) tempTab.push(city);
+      });
+
+      this.searchTab = tempTab;
+    } else {
+      this.searchTab = this.searchTab;
+      this.wasSearched = false;
+    }
+    this.searchValueLength = searchValue.length;
   }
 }

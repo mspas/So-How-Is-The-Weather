@@ -31,11 +31,11 @@ $radius: 0.25rem
             border-radius: $radius 0 0 $radius
             color: $white
             max-width: $input-width
-            height: $height - 2
+            height: $height - 2px
             padding: 0 0.75rem
             @media screen and ( max-width: 774px )
                 padding: 0 0 0 5px
-                height: $height - 12px
+                height: $height - 10px
             &:focus
                 background-color: #ffffff0e
                 box-shadow: none
@@ -72,6 +72,8 @@ $radius: 0.25rem
     bottom: -20px - (3*$li-height)
     width: $input-width + 40px
     height: auto
+    max-height: $li-height*3 + 18px
+    overflow-y: scroll
     background-color: #ffffff0e
     border: 1px solid $white
     border-top: none
@@ -85,3 +87,15 @@ $radius: 0.25rem
             cursor: pointer
             &:hover
                 background-color: #ffffff2c
+    &::-webkit-scrollbar 
+        border-radius: 10px
+        height: 10px
+        width: 5px
+
+    &::-webkit-scrollbar-thumb 
+        background: #999
+        border-radius: 10px
+
+    &::-webkit-scrollbar-track 
+        border-radius: 10px
+

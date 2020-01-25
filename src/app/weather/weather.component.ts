@@ -10,13 +10,13 @@ import { CityData } from "../models/city.model";
   styleUrls: ["./weather.component.sass"]
 })
 export class WeatherComponent implements OnInit {
-  MAX_VALUE = 100000;
+  private MAX_VALUE = 100000;
 
-  weatherData: any = null;
-  currentWeather: CurrentWeatherData;
-  citiesList: CityData[] = cities;
-  geolocationData: any;
-  foundCity: CityData;
+  public weatherData: any = null;
+  public currentWeather: CurrentWeatherData;
+  private citiesList: CityData[] = cities;
+  private geolocationData: any;
+  public foundCity: CityData;
 
   constructor(private _api: ApiService) {}
 

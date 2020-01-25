@@ -11,16 +11,22 @@
           placeholder="Find city"
           aria-label="Find city"
           (click)="inputClick()"
+          (input)="inputSearchChange($event.target.value)"
         />
         <div class="btn btn-outline-light center">
           <fa-icon [icon]="faSearch"></fa-icon>
         </div>
       </form>
       <div class="results hidden" id="city-results">
-        <ul>
-          <li id="result1">...</li>
-          <li id="result2">...</li>
-          <li id="result3">...</li>
+        <ul *ngIf="wasSearched">
+          <li *ngFor="let city of searchTab; index as i" id="result{{ i }}">
+            {{ city.name }} {{ city.country }}
+          </li>
+        </ul>
+        <ul *ngIf="!wasSearched">
+          <li>...</li>
+          <li>...</li>
+          <li>...</li>
         </ul>
       </div>
     </div>
