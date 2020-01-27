@@ -10,7 +10,7 @@ export class WeatherWeekComponent implements OnInit {
   @Input() weatherData: any;
   @Input() foundCity: CityData;
 
-  private imageUrl: string = "./assets/cloud.png";
+  private imageUrl: string = "./assets/cloud.svg";
 
   constructor() {}
 

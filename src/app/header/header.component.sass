@@ -22,6 +22,8 @@ $radius: 0.25rem
         float: right
         max-height: 43px
         min-width: $input-width + 40px
+        @media screen and ( max-width: 774px )
+            min-width: $input-width
         @media screen and ( max-width: 450px )
             margin-top: 20px
         input 
@@ -34,8 +36,9 @@ $radius: 0.25rem
             height: $height - 2px
             padding: 0 0.75rem
             @media screen and ( max-width: 774px )
-                padding: 0 0 0 5px
-                height: $height - 10px
+                width: $input-width
+                border-right-style: solid
+                border-radius: $radius
             &:focus
                 background-color: #ffffff0e
                 box-shadow: none
@@ -50,8 +53,7 @@ $radius: 0.25rem
             height: $height
             cursor: default
             @media screen and ( max-width: 774px )
-                width: $height - 10px
-                height: $height - 10px
+                visibility: hidden
 .hidden
     visibility: hidden
 .visible

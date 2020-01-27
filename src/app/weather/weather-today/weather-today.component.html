@@ -1,26 +1,18 @@
 <div class="row">
   <div class="col-md-6 center">
-    <img
-      (click)="click()"
-      id="current-ico"
-      class="sun"
-      [src]="imageUrl"
-      alt="Image"
-    />
+    <img id="current-ico" class="sun" [src]="imageUrl" alt="Image" />
   </div>
   <div class="col-md-6 weather-info">
     <div class="row">
       <div class="col-md-6">
-        <p class="big-temp" *ngIf="weatherData == null">
-          12 <sup class="degrees">&deg;C</sup>
-        </p>
+        <p class="big-temp">{{ temp }} <sup class="degrees">&deg;C</sup></p>
       </div>
       <div class="col-md-6 center">
-        <p class="md-font" *ngIf="weatherData == null">Sunny</p>
+        <p class="md-font">{{ weatherMain }}</p>
       </div>
     </div>
     <div class="row">
-      <p class="md-font weather-main" *ngIf="foundCity == null">Breslau</p>
+      <p class="md-font weather-main">{{ city }}</p>
     </div>
   </div>
 </div>

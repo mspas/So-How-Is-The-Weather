@@ -1,7 +1,8 @@
-import { Component, OnInit, ElementRef, HostListener } from "@angular/core";
+import { Component, OnInit, HostListener } from "@angular/core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import cities from "../city.list.json";
 import { CityData } from "../models/city.model";
+import { DataService } from "../services/data.service.js";
 
 @Component({
   selector: "app-header",
@@ -17,13 +18,13 @@ export class HeaderComponent implements OnInit {
   private searchTab: CityData[];
   private searchValueLength = 0;
 
-  constructor() {}
+  constructor(private _data: DataService) {}
 
   ngOnInit() {
     this.searchTab = this.citiesList;
   }
 
-  inputClick() {
+  onInputClick() {
     this.collapseHandler = !this.collapseHandler;
     let e = document.getElementById("city-results");
 
@@ -68,5 +69,9 @@ export class HeaderComponent implements OnInit {
       this.wasSearched = false;
     }
     this.searchValueLength = searchValue.length;
+  }
+
+  onCityClick(city: CityData) {
+    this._data.searchData = city;
   }
 }

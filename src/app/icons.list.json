@@ -1,0 +1,37 @@
+[
+  {
+    "from": 200,
+    "to": 232,
+    "fileName": "storm.svg"
+  },
+  {
+    "from": 300,
+    "to": 531,
+    "fileName": "rain.svg"
+  },
+  {
+    "from": 600,
+    "to": 622,
+    "fileName": "snow.svg"
+  },
+  {
+    "from": 700,
+    "to": 781,
+    "fileName": "clouds.svg"
+  },
+  {
+    "from": 800,
+    "to": 800,
+    "fileName": "sun.svg"
+  },
+  {
+    "from": 801,
+    "to": 802,
+    "fileName": "cloudy.svg"
+  },
+  {
+    "from": 803,
+    "to": 804,
+    "fileName": "cloud.svg"
+  }
+ ]
