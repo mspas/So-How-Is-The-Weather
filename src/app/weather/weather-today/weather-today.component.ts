@@ -28,7 +28,7 @@ export class WeatherTodayComponent implements OnInit {
   public imageUrl: string = "./assets/sun.svg";
   public weatherMain: string = "Sunny";
   public temp: string = "12";
-  public city: string = "Mogadishu";
+  public city: string = "Wroclaw";
 
   constructor() {}
 
@@ -39,11 +39,8 @@ export class WeatherTodayComponent implements OnInit {
   }
 
   prepareData(wData: WeatherData) {
-    console.log("elo + " + JSON.stringify(wData));
     if (wData != null) {
       let id = this.weatherData.id;
-
-      console.log("siema + " + JSON.stringify(wData));
 
       this.weatherMain = wData.main;
       this.temp = wData.feelsLike.toString();

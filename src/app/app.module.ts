@@ -8,7 +8,7 @@ import { ApiService } from "./services/api.service";
 import { WeatherModule } from "./weather/weather.module";
 import { HeaderComponent } from "./header/header.component";
 import { FontAwesomeModule } from "@fortawesome/angular-fontawesome";
-import { DataService } from "./services/data.service";
+import { DataService } from "./services/DataService";
 
 @NgModule({
   declarations: [AppComponent, HeaderComponent],
@@ -19,6 +19,7 @@ import { DataService } from "./services/data.service";
     AppRoutingModule,
     WeatherModule
   ],
+  providers: [ApiService, DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}

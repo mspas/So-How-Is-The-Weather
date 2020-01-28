@@ -2,7 +2,7 @@ import { Component, OnInit, HostListener } from "@angular/core";
 import { faSearch } from "@fortawesome/free-solid-svg-icons";
 import cities from "../city.list.json";
 import { CityData } from "../models/city.model";
-import { DataService } from "../services/data.service.js";
+import { DataService } from "../services/DataService";
 
 @Component({
   selector: "app-header",
@@ -65,7 +65,7 @@ export class HeaderComponent implements OnInit {
 
       this.searchTab = tempTab;
     } else {
-      this.searchTab = this.searchTab;
+      this.searchTab = this.citiesList;
       this.wasSearched = false;
     }
     this.searchValueLength = searchValue.length;
