@@ -31,7 +31,7 @@ export class WeatherComponent implements OnInit {
       console.log(city);
       if (city && city.id != this.foundCity.id) {
         this.getWeather(city.id);
-        this.getWeekWeather(cityPicker.cityData.id);
+        this.getWeekWeather(city.id);
         this.foundCity = city;
       }
     });

@@ -48,6 +48,7 @@ export class WeatherWeekComponent implements OnInit {
 
   private _fiveDaysWeatherData = new BehaviorSubject<WeatherData[]>([]);
   @Input() set fiveDaysWeatherData(value: WeatherData[]) {
+    this.viewDataList = [];
     this._fiveDaysWeatherData.next(value);
   }
   get weatherData() {
@@ -74,7 +75,6 @@ export class WeatherWeekComponent implements OnInit {
         let id = day.id;
         let date = new Date(day.date);
 
-        console.log(date);
         let dateString =
           this.monthNames[date.getMonth()].slice(0, 3) +
           " " +
