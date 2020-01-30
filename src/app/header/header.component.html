@@ -8,13 +8,16 @@
         <input
           class="form-control"
           type="search"
-          placeholder="Find city"
-          aria-label="Find city"
+          placeholder="Find city or geolocate"
+          aria-label="Find city or geolocate"
           (click)="onInputClick()"
           (input)="inputSearchChange($event.target.value)"
         />
-        <div class="btn btn-outline-light center">
-          <fa-icon [icon]="faSearch"></fa-icon>
+        <div
+          class="btn btn-outline-light center"
+          data-tooltip="Now stop using Javascript tooltips"
+        >
+          <fa-icon [icon]="faMap"></fa-icon>
         </div>
       </form>
       <div class="results hidden" id="city-results">

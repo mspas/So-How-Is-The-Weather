@@ -19,4 +19,16 @@ export class ApiService {
       this.key;
     return this._http.get(call);
   }
+
+  get5Days(cityId: number) {
+    let type = "forecast";
+    let call =
+      this.url +
+      type +
+      "?id=" +
+      cityId.toString() +
+      "&units=metric&APPID=" +
+      this.key;
+    return this._http.get(call);
+  }
 }

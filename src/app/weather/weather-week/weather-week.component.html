@@ -1,38 +1,46 @@
-<ul class="center">
+<ul *ngIf="viewDataList.length > 0" class="center">
+  <li *ngFor="let day of viewDataList; index as i">
+    <img [src]="day.url" alt="Day" style="margin-bottom: 10px;" />
+    <p>{{ day.feelsLike }}&deg;C</p>
+    <p>{{ day.main }}</p>
+    <p>{{ day.date }}</p>
+    <p>{{ day.day }}</p>
+  </li>
+</ul>
+<ul *ngIf="viewDataList.length < 1" class="center">
   <li>
-    <img [src]="imageUrl" alt="Image" />
-    <p>12 &deg;</p>
-    <p>shitw</p>
-    <p>Breslau</p>
+    <img [src]="defaultData.url" alt="Day" />
+    <p>{{ defaultData.feelsLike }}</p>
+    <p>{{ defaultData.main }}</p>
+    <p>{{ defaultData.date }}</p>
+    <p>{{ defaultData.day }}</p>
   </li>
   <li>
-    <img [src]="imageUrl" alt="Image" />
-    <p>12 &deg;</p>
-    <p>shitw</p>
-    <p>Breslau</p>
+    <img [src]="defaultData.url" alt="Day" />
+    <p>{{ defaultData.feelsLike }}</p>
+    <p>{{ defaultData.main }}</p>
+    <p>{{ defaultData.date }}</p>
+    <p>{{ defaultData.day }}</p>
   </li>
   <li>
-    <img [src]="imageUrl" alt="Image" />
-    <p>12 &deg;</p>
-    <p>shitw</p>
-    <p>Breslau</p>
+    <img [src]="defaultData.url" alt="Day" />
+    <p>{{ defaultData.feelsLike }}</p>
+    <p>{{ defaultData.main }}</p>
+    <p>{{ defaultData.date }}</p>
+    <p>{{ defaultData.day }}</p>
   </li>
   <li>
-    <img [src]="imageUrl" alt="Image" />
-    <p>12 &deg;</p>
-    <p>shitw</p>
-    <p>Breslau</p>
+    <img [src]="defaultData.url" alt="Day" />
+    <p>{{ defaultData.feelsLike }}</p>
+    <p>{{ defaultData.main }}</p>
+    <p>{{ defaultData.date }}</p>
+    <p>{{ defaultData.day }}</p>
   </li>
   <li>
-    <img [src]="imageUrl" alt="Image" />
-    <p>12 &deg;</p>
-    <p>shitw</p>
-    <p>Breslau</p>
-  </li>
-  <li>
-    <img [src]="imageUrl" alt="Image" />
-    <p>12 &deg;</p>
-    <p>shitw</p>
-    <p>Breslau</p>
+    <img [src]="defaultData.url" alt="Day" />
+    <p>{{ defaultData.feelsLike }}</p>
+    <p>{{ defaultData.main }}</p>
+    <p>{{ defaultData.date }}</p>
+    <p>{{ defaultData.day }}</p>
   </li>
 </ul>

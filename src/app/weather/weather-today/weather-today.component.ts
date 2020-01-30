@@ -11,8 +11,30 @@ import { BehaviorSubject } from "rxjs";
   styleUrls: ["./weather-today.component.sass"]
 })
 export class WeatherTodayComponent implements OnInit {
+  private monthNames = [
+    "January",
+    "February",
+    "March",
+    "April",
+    "May",
+    "June",
+    "July",
+    "August",
+    "September",
+    "October",
+    "November",
+    "December"
+  ];
+
   private _weatherData = new BehaviorSubject<WeatherData>(
-    new WeatherData(800, 12, "Sunny", 0, 1)
+    new WeatherData(
+      800,
+      12,
+      "Sunny",
+      0,
+      1,
+      new Date("Mon Jan 19 1970 08:01:12")
+    )
   );
 
   @Input() foundCity: CityData;
@@ -30,13 +52,15 @@ export class WeatherTodayComponent implements OnInit {
     main: "Sunny",
     temp: "12",
     city: "Wrocław",
-    country: "PL"
+    country: "PL",
+    date: "January 30"
   };
 
   constructor() {}
 
   ngOnInit() {
     this._weatherData.subscribe(data => {
+      console.log(JSON.stringify(data));
       this.prepareData(data);
     });
   }
@@ -44,10 +68,12 @@ export class WeatherTodayComponent implements OnInit {
   prepareData(wData: WeatherData) {
     let isNight = false;
     let now = Math.floor(Date.now() / 1000);
-    console.log(now);
 
     if (wData != null) {
       let id = this.weatherData.id;
+      let date = new Date(wData.date);
+      let dateString =
+        this.monthNames[date.getMonth()] + " " + date.getDate().toString();
 
       if (now < this.weatherData.sunrise || now > this.weatherData.sunset)
         isNight = true;
@@ -56,7 +82,8 @@ export class WeatherTodayComponent implements OnInit {
         main: wData.main,
         temp: Math.round(wData.feelsLike).toString(),
         city: this.foundCity.name,
-        country: this.foundCity.country
+        country: this.foundCity.country,
+        date: dateString
       };
 
       this.iconList.forEach(ico => {

@@ -4,18 +4,23 @@
   </div>
   <div class="col-md-6 weather-info text-outline">
     <div class="row">
-      <p class="font-md weather-city">
+      <p class="font-bg weather-city center-row">
         {{ viewData.city }}, {{ viewData.country }}
       </p>
     </div>
     <div class="row">
+      <p class="font-md center-row">
+        {{ viewData.date }}
+      </p>
+    </div>
+    <div class="row">
       <div class="col-md-6">
-        <p class="font-big">
+        <p class="font-lg">
           {{ viewData.temp }} <sup class="font-sm">&deg;C</sup>
         </p>
       </div>
       <div class="col-md-6 center">
-        <p class="font-md">{{ viewData.main }}</p>
+        <p class="font-bg">{{ viewData.main }}</p>
       </div>
     </div>
   </div>

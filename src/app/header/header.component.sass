@@ -51,7 +51,6 @@ $radius: 0.25rem
             border-radius: 0 $radius $radius 0
             width: $height
             height: $height
-            cursor: default
             @media screen and ( max-width: 774px )
                 visibility: hidden
 .hidden
@@ -101,3 +100,25 @@ $radius: 0.25rem
     &::-webkit-scrollbar-track 
         border-radius: 10px
 
+
+.tooltip 
+    position: relative
+    display: inline-block
+
+.tooltip 
+    .tooltiptext 
+        visibility: visible
+        font-size: 10px
+        width: 65px
+        background-color: rgb(68, 68, 68)
+        color: #fff
+        text-align: center
+        padding: 5px 0
+        border-radius: 6px
+        position: absolute
+        right: 70%
+        top: 110%
+        z-index: 11
+
+.tooltip:hover .tooltiptext 
+    visibility: visible

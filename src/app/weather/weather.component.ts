@@ -16,23 +16,23 @@ export class WeatherComponent implements OnInit {
 
   public weatherDataApi: any = null;
   public weatherData: WeatherData;
+
+  public fiveDaysWeatherDataApi: any = null;
+  public fiveDaysWeatherData: WeatherData[] = null;
+
   private citiesList: CityData[] = cities;
   private geolocationData: any;
   public foundCity: CityData;
-  private searchCity: CityData;
-  private cityId: number = -1;
 
-  constructor(
-    private _api: ApiService,
-    private _data: DataService,
-    private route: ActivatedRoute
-  ) {}
+  constructor(private _api: ApiService, private _data: DataService) {}
 
   ngOnInit() {
     this._data.searchData$.subscribe(city => {
       console.log(city);
       if (city && city.id != this.foundCity.id) {
-        this.getWeather(city);
+        this.getWeather(city.id);
+        this.getWeekWeather(cityPicker.cityData.id);
+        this.foundCity = city;
       }
     });
 
@@ -56,23 +56,47 @@ export class WeatherComponent implements OnInit {
         if (diff < 0.05) break;
         //approx diffe rence inside a city like wroclaw
       }
-
-      this.getWeather(cityPicker.cityData);
+      this.foundCity = cityPicker.cityData;
+      this.getWeather(cityPicker.cityData.id);
+      this.getWeekWeather(cityPicker.cityData.id);
     });
   }
 
-  getWeather(city: CityData) {
-    this._api.getWeather(city.id).subscribe(data => {
+  getWeather(cityId: number) {
+    this._api.getWeather(cityId).subscribe(data => {
       this.weatherDataApi = data;
       this.weatherData = new WeatherData(
         this.weatherDataApi.weather[0].id,
         this.weatherDataApi.main.feels_like,
         this.weatherDataApi.weather[0].main,
         this.weatherDataApi.sys.sunrise,
-        this.weatherDataApi.sys.sunset
+        this.weatherDataApi.sys.sunset,
+        new Date()
       );
-      this.foundCity = city;
       console.log(JSON.stringify(data));
+    });
+  }
+
+  getWeekWeather(cityId: number) {
+    this._api.get5Days(cityId).subscribe(data => {
+      this.fiveDaysWeatherDataApi = data;
+      this.fiveDaysWeatherData = [];
+      for (let i = 0; i < 5; i++) {
+        const element = this.fiveDaysWeatherDataApi.list[i];
+        let date = new Date();
+        date.setDate(date.getDate() + i + 1);
+        this.fiveDaysWeatherData.push(
+          new WeatherData(
+            element.weather[0].id,
+            element.main.feels_like,
+            element.weather[0].main,
+            0,
+            0,
+            date
+          )
+        );
+      }
+      console.log(JSON.stringify(this.fiveDaysWeatherData));
     });
   }
 

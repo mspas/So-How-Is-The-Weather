@@ -1,5 +1,5 @@
 import { Component, OnInit, HostListener } from "@angular/core";
-import { faSearch } from "@fortawesome/free-solid-svg-icons";
+import { faSearch, faMapMarkerAlt } from "@fortawesome/free-solid-svg-icons";
 import cities from "../city.list.json";
 import { CityData } from "../models/city.model";
 import { DataService } from "../services/DataService";
@@ -11,6 +11,8 @@ import { DataService } from "../services/DataService";
 })
 export class HeaderComponent implements OnInit {
   public faSearch = faSearch;
+  public faMap = faMapMarkerAlt;
+
   private collapseHandler = false;
   private wasInside = false;
   private wasSearched = false;
