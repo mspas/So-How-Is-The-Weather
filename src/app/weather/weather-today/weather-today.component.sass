@@ -1,76 +1,32 @@
+@import '../../../_animations.sass'
+
 #current-ico
     display: inline-block
-    width: 150px
-    @media screen and ( max-width: 300px )
-        width: 70%
+    width: 200px
+    @media screen and ( max-width: 772px )
+        width: 150px
 .sun
     animation: spin 10s linear infinite   
 .cloud
     position: absolute
-    left: 25%
     animation: move 5s linear infinite alternate
 .clouds
     position: absolute
-    left: 25%
     animation: move 5s linear infinite alternate
 .cloudy
     position: absolute
-    left: 25%
+    animation: move 5s linear infinite alternate
+.rain
+    position: absolute
     animation: move 5s linear infinite alternate
 .storm
     position: absolute
-    left: 25%
     animation: move 5s linear infinite alternate, zoom 0.5s linear infinite alternate
     transform: scale(1)
 .snow
     animation: rotateAngle 1.5s linear infinite alternate  
 .night
-    animation: rotateAngle 1.5s linear infinite alternate  
-
-@keyframes move
-    0%
-        left: 30%
-    50%
-        left: 35%
-    100%
-        left: 30%
-@media screen and ( max-width: 300px )
-    @keyframes move
-        0%
-            left: 10%
-        50%
-            left: 15%
-        100%
-            left: 10%
-
-@keyframes spin
-    0%
-        transform: rotate(0deg)
-    100%
-        transform: rotate(360deg)   
-        
-@keyframes zoom
-    0%
-        transform: scale(1)
-    100%
-        transform: scale(1.05)
-        
-@keyframes bounce
-    0%
-        transform: translate(0, -10%)
-    50%
-        transform: translate(0, 20%)
-    100%
-        transform: translate(0, -10%)
-
-@keyframes rotateAngle
-    0%
-        transform: rotate(-20deg)
-    50%
-        transform: rotate(0deg)
-    100%
-        transform: rotate(20deg)   
-        
+    animation: rotateAngle 3s linear infinite alternate  
         
 .weather-info
     text-align: center

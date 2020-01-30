@@ -32,7 +32,7 @@ export class WeatherComponent implements OnInit {
     this._data.searchData$.subscribe(city => {
       console.log(city);
       if (city && city.id != this.foundCity.id) {
-        //this.getWeather(city);
+        this.getWeather(city);
       }
     });
 
@@ -57,7 +57,7 @@ export class WeatherComponent implements OnInit {
         //approx diffe rence inside a city like wroclaw
       }
 
-      //this.getWeather(cityPicker.cityData);
+      this.getWeather(cityPicker.cityData);
     });
   }
 
@@ -67,7 +67,9 @@ export class WeatherComponent implements OnInit {
       this.weatherData = new WeatherData(
         this.weatherDataApi.weather[0].id,
         this.weatherDataApi.main.feels_like,
-        this.weatherDataApi.weather[0].main
+        this.weatherDataApi.weather[0].main,
+        this.weatherDataApi.sys.sunrise,
+        this.weatherDataApi.sys.sunset
       );
       this.foundCity = city;
       console.log(JSON.stringify(data));

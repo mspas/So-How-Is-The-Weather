@@ -12,7 +12,7 @@ import { BehaviorSubject } from "rxjs";
 })
 export class WeatherTodayComponent implements OnInit {
   private _weatherData = new BehaviorSubject<WeatherData>(
-    new WeatherData(800, 12, "Sunny")
+    new WeatherData(800, 12, "Sunny", 0, 1)
   );
 
   @Input() foundCity: CityData;
@@ -25,7 +25,7 @@ export class WeatherTodayComponent implements OnInit {
 
   private iconList: WeatherIcon[] = icons;
 
-  public imageUrl: string = "./assets/storm.svg";
+  public imageUrl: string = "./assets/rain.svg";
   public viewData = {
     main: "Sunny",
     temp: "12",
@@ -42,12 +42,19 @@ export class WeatherTodayComponent implements OnInit {
   }
 
   prepareData(wData: WeatherData) {
+    let isNight = false;
+    let now = Math.floor(Date.now() / 1000);
+    console.log(now);
+
     if (wData != null) {
       let id = this.weatherData.id;
 
+      if (now < this.weatherData.sunrise || now > this.weatherData.sunset)
+        isNight = true;
+
       this.viewData = {
         main: wData.main,
-        temp: wData.feelsLike.toString(),
+        temp: Math.round(wData.feelsLike).toString(),
         city: this.foundCity.name,
         country: this.foundCity.country
       };
@@ -55,14 +62,25 @@ export class WeatherTodayComponent implements OnInit {
       this.iconList.forEach(ico => {
         if (id >= ico.from && id <= ico.to) {
           this.imageUrl = "./assets/" + ico.name + ico.ext;
-          this.setStyle(ico.name);
+          if (isNight && id == 800) {
+            this.imageUrl = "./assets/moon.svg";
+            this.setNightStyle("night");
+          } else this.setStyle(ico.name, isNight);
         }
       });
     }
   }
 
-  setStyle(className: string) {
-    document.getElementById("app").setAttribute("class", className);
+  setStyle(className: string, isNight: boolean) {
+    if (isNight) this.setNightStyle(className);
+    else {
+      document.getElementById("app").setAttribute("class", className);
+      document.getElementById("current-ico").setAttribute("class", className);
+    }
+  }
+
+  setNightStyle(className: string) {
+    document.getElementById("app").setAttribute("class", "night");
     document.getElementById("current-ico").setAttribute("class", className);
   }
 }
