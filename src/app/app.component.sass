@@ -4,5 +4,22 @@
 #app
     width: 100vw
     min-height: 100vh
-.sunny
-    @include line-gradient($night-blue, $purple, 60%, 120%)
+
+.night
+    @include line-gradient($night-blue, $night-purple, 0%, 200%)
+.sun
+    font-weight: bolder
+    @include line-gradient($sunny-blue, $sunny-lblue, 0%, 200%)
+.cloud
+    @include line-gradient($cloud-grey, $cloud-lgrey, 0%, 200%)
+.cloudy
+    @include line-gradient($cloudy-blue, $cloudy-grey, 0%, 200%)
+.clouds
+    @include line-gradient($cloud-grey, $cloud-lgrey, 0%, 200%)
+.storm
+    @include line-gradient($storm-blue, $storm-pink, 0%, 200%)
+.rain
+    @include line-gradient($storm-blue, $cloudy-grey, 0%, 200%)
+.snow
+    font-weight: bolder
+    @include line-gradient($cloud-lgrey, $cloud-grey, 0%, 200%)

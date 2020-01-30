@@ -2,14 +2,75 @@
     display: inline-block
     width: 150px
     @media screen and ( max-width: 300px )
-        width: 100%
+        width: 70%
 .sun
-    animation: spin 10s linear infinite
-    @keyframes spin
+    animation: spin 10s linear infinite   
+.cloud
+    position: absolute
+    left: 25%
+    animation: move 5s linear infinite alternate
+.clouds
+    position: absolute
+    left: 25%
+    animation: move 5s linear infinite alternate
+.cloudy
+    position: absolute
+    left: 25%
+    animation: move 5s linear infinite alternate
+.storm
+    position: absolute
+    left: 25%
+    animation: move 5s linear infinite alternate, zoom 0.5s linear infinite alternate
+    transform: scale(1)
+.snow
+    animation: rotateAngle 1.5s linear infinite alternate  
+.night
+    animation: rotateAngle 1.5s linear infinite alternate  
+
+@keyframes move
+    0%
+        left: 30%
+    50%
+        left: 35%
+    100%
+        left: 30%
+@media screen and ( max-width: 300px )
+    @keyframes move
         0%
-            transform: rotate(0deg)
+            left: 10%
+        50%
+            left: 15%
         100%
-            transform: rotate(360deg)            
+            left: 10%
+
+@keyframes spin
+    0%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(360deg)   
+        
+@keyframes zoom
+    0%
+        transform: scale(1)
+    100%
+        transform: scale(1.05)
+        
+@keyframes bounce
+    0%
+        transform: translate(0, -10%)
+    50%
+        transform: translate(0, 20%)
+    100%
+        transform: translate(0, -10%)
+
+@keyframes rotateAngle
+    0%
+        transform: rotate(-20deg)
+    50%
+        transform: rotate(0deg)
+    100%
+        transform: rotate(20deg)   
+        
         
 .weather-info
     text-align: center
@@ -18,14 +79,9 @@
     max-width: 233px
     @media ( max-width: 770px )
         max-width: 100%
-.weather-main
+.weather-city
+    margin-top: 50px
     padding: 0 15px 0 15px
     width: 100%
     text-align: center
-.big-temp
-    font-size: 4em
-    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black
-.md-font
-    font-size: 1.75em
-.degrees
-    font-size: 0.4em
+    letter-spacing: 8px

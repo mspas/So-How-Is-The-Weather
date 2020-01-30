@@ -31,9 +31,9 @@ export class WeatherComponent implements OnInit {
   ngOnInit() {
     this._data.searchData$.subscribe(city => {
       console.log(city);
-      //if (city && city.id != this.foundCity.id) {
-      //this.getWeather(city);
-      //}
+      if (city && city.id != this.foundCity.id) {
+        //this.getWeather(city);
+      }
     });
 
     let cityPicker = {

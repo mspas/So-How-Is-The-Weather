@@ -2,36 +2,43 @@
   {
     "from": 200,
     "to": 232,
-    "fileName": "storm.svg"
+    "name": "storm",
+    "ext": ".svg"
   },
   {
     "from": 300,
     "to": 531,
-    "fileName": "rain.svg"
+    "name": "rain",
+    "ext": ".svg"
   },
   {
     "from": 600,
     "to": 622,
-    "fileName": "snow.svg"
+    "name": "snow",
+    "ext": ".svg"
   },
   {
     "from": 700,
     "to": 781,
-    "fileName": "clouds.svg"
+    "name": "clouds",
+    "ext": ".svg"
   },
   {
     "from": 800,
     "to": 800,
-    "fileName": "sun.svg"
+    "name": "sun",
+    "ext": ".svg"
   },
   {
     "from": 801,
     "to": 802,
-    "fileName": "cloudy.svg"
+    "name": "cloudy",
+    "ext": ".svg"
   },
   {
     "from": 803,
     "to": 804,
-    "fileName": "cloud.svg"
+    "name": "cloud",
+    "ext": ".svg"
   }
  ]

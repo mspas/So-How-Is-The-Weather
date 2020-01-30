@@ -25,10 +25,13 @@ export class WeatherTodayComponent implements OnInit {
 
   private iconList: WeatherIcon[] = icons;
 
-  public imageUrl: string = "./assets/sun.svg";
-  public weatherMain: string = "Sunny";
-  public temp: string = "12";
-  public city: string = "Wroclaw";
+  public imageUrl: string = "./assets/storm.svg";
+  public viewData = {
+    main: "Sunny",
+    temp: "12",
+    city: "Wrocław",
+    country: "PL"
+  };
 
   constructor() {}
 
@@ -42,20 +45,24 @@ export class WeatherTodayComponent implements OnInit {
     if (wData != null) {
       let id = this.weatherData.id;
 
-      this.weatherMain = wData.main;
-      this.temp = wData.feelsLike.toString();
-      this.city = this.foundCity.name;
-
-      console.log(this.weatherMain, this.temp, this.city);
+      this.viewData = {
+        main: wData.main,
+        temp: wData.feelsLike.toString(),
+        city: this.foundCity.name,
+        country: this.foundCity.country
+      };
 
       this.iconList.forEach(ico => {
         if (id >= ico.from && id <= ico.to) {
-          this.imageUrl = "./assets/" + ico.fileName;
+          this.imageUrl = "./assets/" + ico.name + ico.ext;
+          this.setStyle(ico.name);
         }
       });
-
-      if (id != 800)
-        document.getElementById("current-ico").removeAttribute("class");
     }
+  }
+
+  setStyle(className: string) {
+    document.getElementById("app").setAttribute("class", className);
+    document.getElementById("current-ico").setAttribute("class", className);
   }
 }

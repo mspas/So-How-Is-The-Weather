@@ -1,18 +1,22 @@
 <div class="row">
   <div class="col-md-6 center">
-    <img id="current-ico" class="sun" [src]="imageUrl" alt="Image" />
+    <img id="current-ico" class="storm" [src]="imageUrl" alt="Image" />
   </div>
-  <div class="col-md-6 weather-info">
+  <div class="col-md-6 weather-info text-outline">
     <div class="row">
-      <div class="col-md-6">
-        <p class="big-temp">{{ temp }} <sup class="degrees">&deg;C</sup></p>
-      </div>
-      <div class="col-md-6 center">
-        <p class="md-font">{{ weatherMain }}</p>
-      </div>
+      <p class="font-md weather-city">
+        {{ viewData.city }}, {{ viewData.country }}
+      </p>
     </div>
     <div class="row">
-      <p class="md-font weather-main">{{ city }}</p>
+      <div class="col-md-6">
+        <p class="font-big">
+          {{ viewData.temp }} <sup class="font-sm">&deg;C</sup>
+        </p>
+      </div>
+      <div class="col-md-6 center">
+        <p class="font-md">{{ viewData.main }}</p>
+      </div>
     </div>
   </div>
 </div>
