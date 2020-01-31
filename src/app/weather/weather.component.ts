@@ -22,22 +22,42 @@ export class WeatherComponent implements OnInit {
 
   private citiesList: CityData[] = cities;
   private geolocationData: any;
+  public localCity: CityData = null;
+  public localWeather: WeatherData = null;
+  public local5DaysWeather: WeatherData[] = null;
+
   public foundCity: CityData;
 
   constructor(private _api: ApiService, private _data: DataService) {}
 
   ngOnInit() {
+    this.getLocalWeather();
+
     this._data.searchData$.subscribe(city => {
-      console.log(city);
       if (city && city.id != this.foundCity.id) {
-        this.getWeather(city.id);
-        this.getWeekWeather(city.id);
+        this.getWeather(city.id, false);
+        this.getWeekWeather(city.id, false);
         this.foundCity = city;
       }
     });
 
+    this._data.geolocateCheck$.subscribe(data => {
+      if (data) {
+        if (this.localCity == null || this.local5DaysWeather == null)
+          this.getLocalWeather();
+        else {
+          this.foundCity = this.localCity;
+          this.weatherData = this.localWeather;
+          this.fiveDaysWeatherData = this.local5DaysWeather;
+        }
+        this._data.geolocateCheck = false;
+      }
+    });
+  }
+
+  getLocalWeather() {
     let cityPicker = {
-      diff: 100,
+      diff: this.MAX_VALUE,
       cityData: new CityData(-1, "x", "xy", { lon: 0, lat: 0 })
     };
 
@@ -54,15 +74,17 @@ export class WeatherComponent implements OnInit {
           cityPicker.cityData = city;
         }
         if (diff < 0.05) break;
-        //approx diffe rence inside a city like wroclaw
+        //approx difference inside a city like wroclaw
       }
       this.foundCity = cityPicker.cityData;
-      this.getWeather(cityPicker.cityData.id);
-      this.getWeekWeather(cityPicker.cityData.id);
+      this.localCity = cityPicker.cityData;
+
+      this.getWeather(cityPicker.cityData.id, true);
+      this.getWeekWeather(cityPicker.cityData.id, true);
     });
   }
 
-  getWeather(cityId: number) {
+  getWeather(cityId: number, isLocal: boolean) {
     this._api.getWeather(cityId).subscribe(data => {
       this.weatherDataApi = data;
       this.weatherData = new WeatherData(
@@ -73,11 +95,11 @@ export class WeatherComponent implements OnInit {
         this.weatherDataApi.sys.sunset,
         new Date()
       );
-      console.log(JSON.stringify(data));
+      if (isLocal) this.localWeather = this.weatherData;
     });
   }
 
-  getWeekWeather(cityId: number) {
+  getWeekWeather(cityId: number, isLocal: boolean) {
     this._api.get5Days(cityId).subscribe(data => {
       this.fiveDaysWeatherDataApi = data;
       this.fiveDaysWeatherData = [];
@@ -96,7 +118,7 @@ export class WeatherComponent implements OnInit {
           )
         );
       }
-      console.log(JSON.stringify(this.fiveDaysWeatherData));
+      if (isLocal) this.local5DaysWeather = this.fiveDaysWeatherData;
     });
   }
 

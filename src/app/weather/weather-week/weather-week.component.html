@@ -1,9 +1,9 @@
 <ul *ngIf="viewDataList.length > 0" class="center">
   <li *ngFor="let day of viewDataList; index as i">
     <img [src]="day.url" alt="Day" style="margin-bottom: 10px;" />
-    <p>{{ day.feelsLike }}&deg;C</p>
-    <p>{{ day.main }}</p>
-    <p>{{ day.date }}</p>
+    <p class="font-bg">{{ day.feelsLike }}&deg;C</p>
+    <p style="letter-spacing: 5px;">{{ day.main }}</p>
+    <p style="margin: 0">{{ day.date }},</p>
     <p>{{ day.day }}</p>
   </li>
 </ul>

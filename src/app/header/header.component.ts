@@ -76,4 +76,8 @@ export class HeaderComponent implements OnInit {
   onCityClick(city: CityData) {
     this._data.searchData = city;
   }
+
+  onGeoLocateClick() {
+    this._data.geolocateCheck = true;
+  }
 }

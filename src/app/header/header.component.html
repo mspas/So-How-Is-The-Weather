@@ -13,10 +13,7 @@
           (click)="onInputClick()"
           (input)="inputSearchChange($event.target.value)"
         />
-        <div
-          class="btn btn-outline-light center"
-          data-tooltip="Now stop using Javascript tooltips"
-        >
+        <div class="btn btn-outline-light center" (click)="onGeoLocateClick()">
           <fa-icon [icon]="faMap"></fa-icon>
         </div>
       </form>

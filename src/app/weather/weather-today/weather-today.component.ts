@@ -4,6 +4,7 @@ import icons from "../../icons.list.json";
 import { WeatherIcon } from "src/app/models/weather-icon.model.js";
 import { WeatherData } from "src/app/models/weather-data.model.js";
 import { BehaviorSubject } from "rxjs";
+import { DateNameService } from "src/app/services/DateNameService";
 
 @Component({
   selector: "app-weather-today",
@@ -11,21 +12,6 @@ import { BehaviorSubject } from "rxjs";
   styleUrls: ["./weather-today.component.sass"]
 })
 export class WeatherTodayComponent implements OnInit {
-  private monthNames = [
-    "January",
-    "February",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December"
-  ];
-
   private _weatherData = new BehaviorSubject<WeatherData>(
     new WeatherData(
       800,
@@ -33,7 +19,7 @@ export class WeatherTodayComponent implements OnInit {
       "Sunny",
       0,
       1,
-      new Date("Mon Jan 19 1970 08:01:12")
+      new Date("Mon Jan 19 2020 08:01:12")
     )
   );
 
@@ -56,11 +42,10 @@ export class WeatherTodayComponent implements OnInit {
     date: "January 30"
   };
 
-  constructor() {}
+  constructor(private _date: DateNameService) {}
 
   ngOnInit() {
     this._weatherData.subscribe(data => {
-      console.log(JSON.stringify(data));
       this.prepareData(data);
     });
   }
@@ -73,7 +58,9 @@ export class WeatherTodayComponent implements OnInit {
       let id = this.weatherData.id;
       let date = new Date(wData.date);
       let dateString =
-        this.monthNames[date.getMonth()] + " " + date.getDate().toString();
+        this._date.getMonthName(date.getMonth()) +
+        " " +
+        date.getDate().toString();
 
       if (now < this.weatherData.sunrise || now > this.weatherData.sunset)
         isNight = true;
@@ -109,5 +96,9 @@ export class WeatherTodayComponent implements OnInit {
   setNightStyle(className: string) {
     document.getElementById("app").setAttribute("class", "night");
     document.getElementById("current-ico").setAttribute("class", className);
+  }
+
+  ngOnDestroy() {
+    this._weatherData.unsubscribe();
   }
 }
