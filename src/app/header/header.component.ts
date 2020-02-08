@@ -15,7 +15,7 @@ export class HeaderComponent implements OnInit {
 
   private collapseHandler = false;
   private wasInside = false;
-  private wasSearched = false;
+  public wasSearched = false;
   private citiesList: CityData[] = cities;
   private searchTab: CityData[];
   private searchValueLength = 0;
