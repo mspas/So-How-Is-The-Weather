@@ -1,6 +1,7 @@
-$height: 40px
-$li-height: 25px
-$input-width: 169px
+$btn_size: 40px
+$li_height: 25px
+$diff: 16.5px
+$input_width: 169px
 $white: #ffffff
 $radius: 0.25rem
 
@@ -21,9 +22,9 @@ $radius: 0.25rem
     .form-right
         float: right
         max-height: 43px
-        min-width: $input-width + 40px
+        min-width: $input_width + 40px
         @media screen and ( max-width: 774px )
-            width: $input-width - 40px
+            width: $input_width - $btn_size
         @media screen and ( max-width: 450px )
             margin-top: 20px
         input 
@@ -32,13 +33,11 @@ $radius: 0.25rem
             border-right-style: none
             border-radius: $radius 0 0 $radius
             color: $white
-            max-width: $input-width
-            height: $height - 2px
+            max-width: $input_width
+            height: $btn_size - 2px
             padding: 0 0.75rem
             @media screen and ( max-width: 774px )
-                width: $input-width
-                border-right-style: solid
-                border-radius: $radius
+                width: $input_width - $btn_size
             &:focus
                 background-color: #ffffff0e
                 box-shadow: none
@@ -49,10 +48,9 @@ $radius: 0.25rem
             padding: 0
             border-left-style: none
             border-radius: 0 $radius $radius 0
-            width: $height
-            height: $height
-            @media screen and ( max-width: 774px )
-                visibility: hidden
+            width: $btn_size
+            height: $btn_size
+            max-height: $btn_size
 .hidden
     visibility: hidden
 .visible
@@ -70,21 +68,24 @@ $radius: 0.25rem
     position: absolute
     z-index: 2
     right: 0
-    bottom: -20px - (3*$li-height)
-    width: $input-width + 40px
+    bottom: -20px - (3*$li_height)
+    width: $input_width + $btn_size
     height: auto
-    max-height: $li-height*3 + 18px
+    max-height: $li_height*3 + 18px
     overflow-y: scroll
     background-color: #ffffff0e
     border: 1px solid $white
     border-top: none
     border-radius: 0 0 $radius $radius
+    @media screen and ( max-width: 774px )
+        width: $input_width + $btn_size - $diff
+        right: $diff
     ul
         padding: 0
         li 
             padding-left: 40px
             list-style: none
-            height: $li-height
+            height: $li_height
             cursor: pointer
             &:hover
                 background-color: #ffffff2c

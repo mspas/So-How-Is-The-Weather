@@ -28,12 +28,11 @@ export class HeaderComponent implements OnInit {
 
   onInputClick() {
     this.collapseHandler = !this.collapseHandler;
-    let e = document.getElementById("city-results");
 
     if (this.collapseHandler) {
-      e.setAttribute("class", "results collapse-results visible");
+      this.showResultList();
     } else {
-      e.setAttribute("class", "results hidden");
+      this.hideResultsList();
     }
     this.wasInside = true;
   }
@@ -41,14 +40,25 @@ export class HeaderComponent implements OnInit {
   @HostListener("document:click")
   clickout() {
     if (!this.wasInside) {
-      let e = document.getElementById("city-results");
-      e.setAttribute("class", "results hidden");
+      this.hideResultsList();
     }
     this.wasInside = false;
     this.collapseHandler = false;
   }
 
+  showResultList() {
+    document
+      .getElementById("city-results")
+      .setAttribute("class", "results collapse-results visible");
+  }
+  hideResultsList() {
+    document
+      .getElementById("city-results")
+      .setAttribute("class", "results hidden");
+  }
+
   inputSearchChange(searchValue: string) {
+    if (searchValue.length > 0 && !this.collapseHandler) this.showResultList();
     if (searchValue.length > 2) {
       if (this.searchValueLength > searchValue.length)
         this.searchTab = this.citiesList;

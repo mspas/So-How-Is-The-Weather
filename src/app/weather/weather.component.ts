@@ -14,6 +14,8 @@ import { ApiService } from "../services/api.service";
 export class WeatherComponent implements OnInit {
   private MAX_VALUE = 100000;
 
+  private subscriptions: any[] = [];
+
   public weatherDataApi: any = null;
   public weatherData: WeatherData;
 
@@ -33,7 +35,7 @@ export class WeatherComponent implements OnInit {
   ngOnInit() {
     this.getLocalWeather();
 
-    this._data.searchData$.subscribe(city => {
+    let sub1 = this._data.searchData$.subscribe(city => {
       if (city && city.id != this.foundCity.id) {
         this.getWeather(city.id, false);
         this.getWeekWeather(city.id, false);
@@ -41,7 +43,7 @@ export class WeatherComponent implements OnInit {
       }
     });
 
-    this._data.geolocateCheck$.subscribe(data => {
+    let sub2 = this._data.geolocateCheck$.subscribe(data => {
       if (data) {
         if (this.localCity == null || this.local5DaysWeather == null)
           this.getLocalWeather();
@@ -53,6 +55,9 @@ export class WeatherComponent implements OnInit {
         this._data.geolocateCheck = false;
       }
     });
+
+    this.subscriptions.push(sub1);
+    this.subscriptions.push(sub2);
   }
 
   getLocalWeather() {
@@ -85,11 +90,14 @@ export class WeatherComponent implements OnInit {
   }
 
   getWeather(cityId: number, isLocal: boolean) {
-    this._api.getWeather(cityId).subscribe(data => {
+    let sub = this._api.getWeather(cityId).subscribe(data => {
       this.weatherDataApi = data;
+      console.log(JSON.stringify(data));
       this.weatherData = new WeatherData(
         this.weatherDataApi.weather[0].id,
-        this.weatherDataApi.main.feels_like,
+        (this.weatherDataApi.main.temp_max +
+          this.weatherDataApi.main.temp_min) /
+          2,
         this.weatherDataApi.weather[0].main,
         this.weatherDataApi.sys.sunrise,
         this.weatherDataApi.sys.sunset,
@@ -97,10 +105,11 @@ export class WeatherComponent implements OnInit {
       );
       if (isLocal) this.localWeather = this.weatherData;
     });
+    this.subscriptions.push(sub);
   }
 
   getWeekWeather(cityId: number, isLocal: boolean) {
-    this._api.get5Days(cityId).subscribe(data => {
+    let sub = this._api.get5Days(cityId).subscribe(data => {
       this.fiveDaysWeatherDataApi = data;
       this.fiveDaysWeatherData = [];
       for (let i = 0; i < 5; i++) {
@@ -120,6 +129,7 @@ export class WeatherComponent implements OnInit {
       }
       if (isLocal) this.local5DaysWeather = this.fiveDaysWeatherData;
     });
+    this.subscriptions.push(sub);
   }
 
   getLocation(): Promise<any> {
@@ -132,6 +142,12 @@ export class WeatherComponent implements OnInit {
           reject(err);
         }
       );
+    });
+  }
+
+  ngOnDestroy() {
+    this.subscriptions.forEach(sub => {
+      sub.unsubscribe();
     });
   }
 }
