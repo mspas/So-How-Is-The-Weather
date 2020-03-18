@@ -45,9 +45,9 @@ export class WeatherComponent implements OnInit {
 
     let sub2 = this._data.geolocateCheck$.subscribe(data => {
       if (data) {
-        if (this.localCity == null || this.local5DaysWeather == null)
+        if (this.localCity == null || this.local5DaysWeather == null) {
           this.getLocalWeather();
-        else {
+        } else {
           this.foundCity = this.localCity;
           this.weatherData = this.localWeather;
           this.fiveDaysWeatherData = this.local5DaysWeather;

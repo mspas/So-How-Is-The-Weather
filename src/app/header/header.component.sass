@@ -7,7 +7,12 @@ $radius: 0.25rem
 
 .header    
     max-width: 992px
-    padding: 35px 0
+    padding: 35px 
+    .logo
+        user-select: none
+        font-size: 1.25em
+        span 
+            font-size: 1.75em
     img
         margin-left: 25px
     .row
@@ -68,7 +73,7 @@ $radius: 0.25rem
     position: absolute
     z-index: 2
     right: 0
-    bottom: -20px - (3*$li_height)
+    bottom: - (3*$li_height)
     width: $input_width + $btn_size
     height: auto
     max-height: $li_height*3 + 18px
@@ -80,10 +85,12 @@ $radius: 0.25rem
     @media screen and ( max-width: 774px )
         width: $input_width + $btn_size - $diff
         right: $diff
+    @media screen and ( max-width: 575px )
+        bottom: - 20px - (3*$li_height)
     ul
         padding: 0
         li 
-            padding-left: 40px
+            padding-left: 20px
             list-style: none
             height: $li_height
             cursor: pointer
